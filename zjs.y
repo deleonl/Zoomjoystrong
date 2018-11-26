@@ -5,6 +5,8 @@
 	int yylex();
 %}
 
+%union { int i; float f; }
+
 %token END
 %token END_STATEMENT
 %token POINT
@@ -14,6 +16,9 @@
 %token SET_COLOR
 %token INT
 %token FLOAT
+
+%type<i> INT
+%type<f> FLOAT
 
 %%
 program:	expr_list END END_STATEMENT
@@ -35,9 +40,7 @@ point_statement:	POINT INT INT END_STATEMENT
 		else if ($3 < 0 || $3 > HEIGHT) {
 			yyerror("Invalid y-coordinate");
 		}
-		else {
-			point($2,$3);
-		}
+		point($2,$3);
 	}
 	;
 line_statement:		LINE INT INT INT INT END_STATEMENT
@@ -48,9 +51,7 @@ line_statement:		LINE INT INT INT INT END_STATEMENT
 		else if ($3 < 0 || $5 < 0 || $3 > HEIGHT || $4 > HEIGHT) {
 			yyerror("Invalid y-coordinate");
 		}
-		else {
-			line($2,$3,$4,$5);
-		}
+		line($2,$3,$4,$5);
 	}			
 	;
 circle_statement:	CIRCLE INT INT INT END_STATEMENT
@@ -61,9 +62,7 @@ circle_statement:	CIRCLE INT INT INT END_STATEMENT
 		else if ($3 < 0 || $3 > HEIGHT) {
 			yyerror("Invalid y-coordinate");
 		}
-		else {
-			circle($2,$3,$4);
-		}
+		circle($2,$3,$4);
 	}
 	;
 rect_statement:		RECTANGLE INT INT INT INT END_STATEMENT
@@ -101,6 +100,7 @@ color_statement:	SET_COLOR INT INT INT END_STATEMENT
 int main(int argc, char** argv) {
 	setup();
 	yyparse();
+	return 0;
 }
 
 int yyerror(const char* err){

@@ -118,7 +118,16 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+
+union YYSTYPE
+{
+#line 8 "zjs.y" /* yacc.c:355  */
+ int i; float f; 
+
+#line 128 "zjs.tab.c" /* yacc.c:355  */
+};
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -132,7 +141,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 136 "zjs.tab.c" /* yacc.c:358  */
+#line 145 "zjs.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -430,8 +439,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    19,    19,    21,    22,    24,    25,    26,    27,    28,
-      30,    43,    56,    69,    88
+       0,    24,    24,    26,    27,    29,    30,    31,    32,    33,
+      35,    46,    57,    68,    87
 };
 #endif
 
@@ -1218,91 +1227,85 @@ yyreduce:
   switch (yyn)
     {
         case 10:
-#line 31 "zjs.y" /* yacc.c:1648  */
+#line 36 "zjs.y" /* yacc.c:1648  */
     {
-		if ((yyvsp[-2]) < 0 || (yyvsp[-2]) > WIDTH) {
+		if ((yyvsp[-2].i) < 0 || (yyvsp[-2].i) > WIDTH) {
 			yyerror("Invalid x-coordinate");
 		}
-		else if ((yyvsp[-1]) < 0 || (yyvsp[-1]) > HEIGHT) {
+		else if ((yyvsp[-1].i) < 0 || (yyvsp[-1].i) > HEIGHT) {
 			yyerror("Invalid y-coordinate");
 		}
-		else {
-			point((yyvsp[-2]),(yyvsp[-1]));
-		}
+		point((yyvsp[-2].i),(yyvsp[-1].i));
 	}
-#line 1234 "zjs.tab.c" /* yacc.c:1648  */
+#line 1241 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
   case 11:
-#line 44 "zjs.y" /* yacc.c:1648  */
+#line 47 "zjs.y" /* yacc.c:1648  */
     {
-		if ((yyvsp[-4]) < 0 || (yyvsp[-2]) < 0 || (yyvsp[-4]) > WIDTH || (yyvsp[-2]) > WIDTH) {
+		if ((yyvsp[-4].i) < 0 || (yyvsp[-2].i) < 0 || (yyvsp[-4].i) > WIDTH || (yyvsp[-2].i) > WIDTH) {
 			yyerror("Invalid x-coordinate");
 		}
-		else if ((yyvsp[-3]) < 0 || (yyvsp[-1]) < 0 || (yyvsp[-3]) > HEIGHT || (yyvsp[-2]) > HEIGHT) {
+		else if ((yyvsp[-3].i) < 0 || (yyvsp[-1].i) < 0 || (yyvsp[-3].i) > HEIGHT || (yyvsp[-2].i) > HEIGHT) {
 			yyerror("Invalid y-coordinate");
 		}
-		else {
-			line((yyvsp[-4]),(yyvsp[-3]),(yyvsp[-2]),(yyvsp[-1]));
-		}
+		line((yyvsp[-4].i),(yyvsp[-3].i),(yyvsp[-2].i),(yyvsp[-1].i));
 	}
-#line 1250 "zjs.tab.c" /* yacc.c:1648  */
+#line 1255 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
   case 12:
-#line 57 "zjs.y" /* yacc.c:1648  */
+#line 58 "zjs.y" /* yacc.c:1648  */
     {
-		if ((yyvsp[-3]) < 0 || (yyvsp[-3]) > WIDTH) {
+		if ((yyvsp[-3].i) < 0 || (yyvsp[-3].i) > WIDTH) {
 			yyerror("Invalid x-coordinate");
 		}
-		else if ((yyvsp[-2]) < 0 || (yyvsp[-2]) > HEIGHT) {
+		else if ((yyvsp[-2].i) < 0 || (yyvsp[-2].i) > HEIGHT) {
 			yyerror("Invalid y-coordinate");
 		}
-		else {
-			circle((yyvsp[-3]),(yyvsp[-2]),(yyvsp[-1]));
-		}
+		circle((yyvsp[-3].i),(yyvsp[-2].i),(yyvsp[-1].i));
 	}
-#line 1266 "zjs.tab.c" /* yacc.c:1648  */
+#line 1269 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
   case 13:
-#line 70 "zjs.y" /* yacc.c:1648  */
+#line 69 "zjs.y" /* yacc.c:1648  */
     {
-		if ((yyvsp[-4]) < 0 || (yyvsp[-4]) > WIDTH) {
+		if ((yyvsp[-4].i) < 0 || (yyvsp[-4].i) > WIDTH) {
 			yyerror("Invalid x-coordinate");
 		}
-		else if ((yyvsp[-3]) < 0 || (yyvsp[-3]) > HEIGHT) {
+		else if ((yyvsp[-3].i) < 0 || (yyvsp[-3].i) > HEIGHT) {
 			yyerror("Invalid y-coordinate");
 		}
-		else if ((yyvsp[-2]) < 0 || (yyvsp[-2]) + (yyvsp[-4]) > WIDTH) {
+		else if ((yyvsp[-2].i) < 0 || (yyvsp[-2].i) + (yyvsp[-4].i) > WIDTH) {
 			yyerror("Invalid width");
 		}
-		else if ((yyvsp[-1]) < 0 || (yyvsp[-1]) + (yyvsp[-3]) > HEIGHT) {
+		else if ((yyvsp[-1].i) < 0 || (yyvsp[-1].i) + (yyvsp[-3].i) > HEIGHT) {
 			yyerror("Invalid height");
 		}
 		else {
-			rectangle((yyvsp[-4]),(yyvsp[-3]),(yyvsp[-2]),(yyvsp[-1]));
+			rectangle((yyvsp[-4].i),(yyvsp[-3].i),(yyvsp[-2].i),(yyvsp[-1].i));
 		}
 	}
-#line 1288 "zjs.tab.c" /* yacc.c:1648  */
+#line 1291 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
   case 14:
-#line 89 "zjs.y" /* yacc.c:1648  */
+#line 88 "zjs.y" /* yacc.c:1648  */
     {
-		if ((yyvsp[-3]) < 0 || (yyvsp[-2]) < 0 || (yyvsp[-1]) < 0 || (yyvsp[-3]) > 255
-			|| (yyvsp[-2]) > 255 || (yyvsp[-1]) > 255) {
+		if ((yyvsp[-3].i) < 0 || (yyvsp[-2].i) < 0 || (yyvsp[-1].i) < 0 || (yyvsp[-3].i) > 255
+			|| (yyvsp[-2].i) > 255 || (yyvsp[-1].i) > 255) {
 			yyerror("Color values must be 0-255");
 		}
 		else {
-			set_color((yyvsp[-3]),(yyvsp[-2]),(yyvsp[-1]));
+			set_color((yyvsp[-3].i),(yyvsp[-2].i),(yyvsp[-1].i));
 		}
 	}
-#line 1302 "zjs.tab.c" /* yacc.c:1648  */
+#line 1305 "zjs.tab.c" /* yacc.c:1648  */
     break;
 
 
-#line 1306 "zjs.tab.c" /* yacc.c:1648  */
+#line 1309 "zjs.tab.c" /* yacc.c:1648  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1530,12 +1533,13 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 99 "zjs.y" /* yacc.c:1907  */
+#line 98 "zjs.y" /* yacc.c:1907  */
 
 
 int main(int argc, char** argv) {
 	setup();
 	yyparse();
+	return 0;
 }
 
 int yyerror(const char* err){

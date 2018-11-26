@@ -816,12 +816,12 @@ YY_RULE_SETUP
 case 8:
 YY_RULE_SETUP
 #line 16 "zjs.lex"
-{ return INT; }
+{ yylval.i = atoi(yytext); return INT; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 17 "zjs.lex"
-{ return FLOAT; }
+{ yylval.i = atoi(yytext); return FLOAT; }
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
@@ -832,7 +832,7 @@ YY_RULE_SETUP
 case 11:
 YY_RULE_SETUP
 #line 19 "zjs.lex"
-{ printf("NOT A TOKEN ON LINE %d: %d\n", yylineno, (int) yytext[0]); }
+{ printf("NOT A TOKEN ON LINE %d: %s\n", yylineno, yytext); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
